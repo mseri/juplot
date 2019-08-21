@@ -11,6 +11,8 @@ let draw ?prms ?display_id ?(fmt = `svg) ?size fig =
     | `png -> Gp.png ?size file, "image/png", true, ".png"
     | `svg ->
       Gp.svg ?size ~other_term_opts:"standalone" file, "image/svg+xml", false, ".svg"
+    | `gif ->
+      Gp.gif ?size ~animation:"animate delay 100" file, "image/gif", true, ".gif"
   in
   Gp.draw ?prms ~output fig;
   let ic = open_in_bin (file ^ ext) in
